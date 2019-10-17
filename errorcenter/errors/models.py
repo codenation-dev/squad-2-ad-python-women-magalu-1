@@ -57,7 +57,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(('Primeiro Nome'), max_length=30, null=True, blank=True)
-    last_name = models.CharField(('Último Nome'), max_length=30, blank=True)
+    last_name = models.CharField(('Último Nome'), max_length=30, null=True, blank=True)
     email = models.EmailField(('E-mail'), max_length=255, unique=True)
     date_joined = models.DateTimeField(('Criado em'), default=timezone.now)
 
