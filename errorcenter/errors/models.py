@@ -56,18 +56,21 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(('email address'), max_length=255, unique=True)
+    first_name = models.CharField(('Primeiro Nome'), max_length=30, null=True, blank=True)
+    last_name = models.CharField(('Último Nome'), max_length=30, blank=True)
+    email = models.EmailField(('E-mail'), max_length=255, unique=True)
+    date_joined = models.DateTimeField(('Criado em'), default=timezone.now)
+
     is_staff = models.BooleanField(
-        ('staff status'),
+        ('Acesso ao Admin'),
         default=False,
         help_text=('Designates whether the user can log into this admin site.')
     )
     is_active = models.BooleanField(
-        ('active'),
+        ('Ativo'),
         default=True,
         help_text=('Designates whether this user should be treated as active.'
                    + 'Unselect this instead of deleting accounts.'))
-    date_joined = models.DateTimeField(('date joined'), default=timezone.now)
 
     USERNAME_FIELD = 'email'
 
@@ -79,6 +82,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
 
     def email_user(self, subject, message, from_email=None):
         send_mail(subject, message, from_email, [self.email])
