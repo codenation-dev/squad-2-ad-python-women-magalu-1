@@ -17,5 +17,5 @@ class ErrorListApiView(generics.ListAPIView):
         Busca todos os erros que não foram arquivados 
         e excluidos.
     """
-    queryset = Error.objects.filter(filed=False, excluded=False)
+    queryset = Error.objects.filter(filed=False)
     serializer_class = ErrorSerializer
