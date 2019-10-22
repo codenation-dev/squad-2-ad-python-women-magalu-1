@@ -1,21 +1,18 @@
-from rest_framework import generics
+from django.shortcuts import render
 
 from .models import Error
-from .serializers import ErrorSerializer
 
+def user_login(request):    
+    return render(request, 'errors/user_login.html')
 
-class ErrorDetailApiView(generics.RetrieveAPIView):
-    """
-        Busca os dados de um erro pela 'pk'.
-    """
-    queryset = Error.objects.all()
-    serializer_class = ErrorSerializer
+def user_register(request):    
+    return render(request, 'errors/user_register.html')
 
+def error_list(request):
+    errors = Error.objects.filter(filed=False)
 
-class ErrorListApiView(generics.ListAPIView):
-    """
-        Busca todos os erros que não foram arquivados 
-        e excluidos.
-    """
-    queryset = Error.objects.filter(filed=False)
-    serializer_class = ErrorSerializer
+    context = {
+        'errors': errors
+    }
+
+    return render(request, 'errors/error_list.html', context=context)
