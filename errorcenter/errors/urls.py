@@ -1,9 +1,11 @@
 from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
 
 urlpatterns = [
-    url(r'^errors/(?P<pk>[0-9]+)/$', views.ErrorDetailApiView.as_view(), name='error-detail'),
-    url(r'^errors/$', views.ErrorListApiView.as_view(), name='error-list'),
+    path('login/', views.user_login, name='user-login'),
+    path('register/', views.user_register, name='user-register'),
+    path('list/', views.error_list, name='error-list'),
 ]
