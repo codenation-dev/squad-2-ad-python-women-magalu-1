@@ -1,0 +1,50 @@
+{% load static %}
+<html>
+    <head>
+        <title>Central de Erros - Luiza Labs (Acelera Dev Python Woman)</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+        <!-- Importacao dos arquivos Css -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/error_list.css' %}">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand">Bem-vindo Usuário. Seu token é: AUHAUHAUHUAHUAHUA</a>
+        </nav>
+        <div class="row ml-1 mt-3 mx-0">
+            <div class="col-md-auto form-group mb-0">
+                <select class="form-control form-control-sm" onchange=""><option>Ambiente</option></select>
+            </div>
+            <div class="col-md-auto form-group mb-0">
+                <select class="form-control form-control-sm" onchange=""><option>Ordenação</option></select>
+            </div>
+            <form class="form-row" action="" method="GET">
+                <div class="col-md-auto form-group mb-0">
+                    <select class="form-control form-control-sm"><option>Filtro</option></select>
+                </div>
+                <div class="col-md-auto form-group mb-0">
+                    <input class="form-control form-control-sm" type="text" name="busca" placeholder="Digita a busca..."/>
+                </div>
+                <div class="col-md-auto form-group mb-0">
+                    <button class="form-control form-control-sm btn btn-sm btn-secondary">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <div class="row ml-1 mx-0">
+            <div class="col-md-auto form-group">
+                <button class="form-control form-control-sm btn btn-sm btn-success">Arquivar</button>
+            </div>
+            <div class="col-md-auto form-group">
+                <button class="form-control form-control-sm btn btn-sm btn-danger">Apagar</button>
+            </div>
+        </div>
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <!-- Importacao dos arquivos Js -->
+        <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/error_list.js' %}"></script>
+    </body>
+</html>

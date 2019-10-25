@@ -1,0 +1,12 @@
+.table th, .table td {
+    padding: 0.4rem;
+}
+
+.table .thead-light th {
+    background-color: #f8f9fa;
+}
+
+.bg-light {
+    background-color: #0086ff!important;
+    color: white;
+}

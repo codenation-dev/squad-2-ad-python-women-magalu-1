@@ -1,6 +1,18 @@
+{% extends "base.html" %}
 
-{% for error in errors %}
-<h2>{{ error.title }}</h2>
-{% empty %}
-<h1>Não há produtos para serem listados.</h1>
-{% endfor %}
+{% block content %}
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th class="text-center">
+                    <input type="checkbox" id="erro">
+                </th>
+                <th class="text-center">Level</th>
+                <th class="text-center">Log</th>
+                <th class="text-center">Eventos</th>
+            </tr>
+        </thead>
+        <tbody class="myErrors">
+        </tbody>
+    </table>
+{% endblock %}
