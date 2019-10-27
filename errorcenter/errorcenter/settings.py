@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps externos
     'rest_framework',
+    'django_filters',
     # apps próprios
     'errors.apps.ErrorsConfig',
 ]
