@@ -3,8 +3,6 @@ from rest_framework import generics
 from ..models import Error
 from .serializers import ErrorSerializer
 
-from rest_framework import filters
-
 
 def is_not_null(args):
     return args != '' and args is not None
@@ -44,7 +42,6 @@ class ErrorListApiView(generics.ListAPIView):
         Busca todos os erros que não foram arquivados 
         e excluidos.
     """
-    print('apiview')
     serializer_class = ErrorSerializer
 
     def get_queryset(self):

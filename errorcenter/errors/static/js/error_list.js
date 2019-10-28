@@ -1,4 +1,4 @@
-function list() 
+function list()
 {
     var request = new XMLHttpRequest()
     request.open('GET', 'http://127.0.0.1:8000/api/errors/', true)
