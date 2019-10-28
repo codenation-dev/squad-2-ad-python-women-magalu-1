@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # apps externos
     'rest_framework',
+    'corsheaders',
     # apps próprios
     'errors.apps.ErrorsConfig',
 ]
@@ -52,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # apps externos
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'errorcenter.urls'
@@ -118,6 +121,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Cross origin
+# https://pypi.org/project/django-cors-headers/
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
