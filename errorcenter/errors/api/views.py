@@ -15,15 +15,12 @@ def ErrorFilter(request):
     search = request.GET.get('search')
 
     if is_not_null(environment):
-        print('env')
         queryset = queryset.filter(environment=environment)
 
     if is_not_null(order_by) and order_by != 'Ordenar por':
-        print('ord')
         queryset = queryset.order_by(order_by)
 
-    if is_not_null(search_for) and is_not_null(search):
-        print('search')
+    if is_not_null(search_for) and is_not_null(search) and search_for != 'Filtro':
         queryset = queryset.filter(**{search_for+"__contains" : search})
 
     return queryset
