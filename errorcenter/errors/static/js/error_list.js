@@ -1,7 +1,7 @@
-function list() 
+function list()
 {
     var request = new XMLHttpRequest()
-    request.open('GET', 'http://127.0.0.1:8000/api/errors', true)
+    request.open('GET', 'http://127.0.0.1:8000/api/errors/', true)
     request.onload = function() {
         var data = JSON.parse(this.response)
         if (request.status >= 200 && request.status < 400) {
