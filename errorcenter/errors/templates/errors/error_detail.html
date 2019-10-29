@@ -3,26 +3,23 @@
 {% block content %}
 <div class="row ml-3 mt-3 mx-0">
     <div class="col-md-auto form-group">
-        <a href="/list" class="form-control form-control-sm btn btn-sm btn-secondary">Voltar</a>
+        <a href="/list" class="form-control form-control-sm btn btn-sm btn-dark">Voltar</a>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-        <h1>Erro no local em data e hora</h1>
+    <div class="col-md-10 offset-md-1">
+        <h1>Erro no {{ error.address }} em {{ error.created_at }}</h1>
     </div>
-</div>
-<div class="row">
     {% if error %}
-    <div class="col-md-8">
-        <h5><strong>Titulo</strong></h5>
+    <div class="col-md-7 offset-md-1">
+        <h5><strong>Título</strong></h5>
         {{ error.title }}
-        <h5><strong>Descrição</strong></h5>
+        <h5><strong>Detalhes</strong></h5>
         {{ error.description }}
     </div>
     <div class="col-md-4">
-        <h5><strong>Level</strong></h5>
-        {{ error.level }}
+        <h5><span class="badge badge-primary">{{ error.level }}</span></h5>
         <h5><strong>Eventos</strong></h5>
         {{ error.events }}
         <h5><strong>Coletado por</strong></h5>

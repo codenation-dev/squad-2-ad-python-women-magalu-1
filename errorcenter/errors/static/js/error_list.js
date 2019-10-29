@@ -19,10 +19,10 @@ window.onload = function() {
                 +'  <td class="text-center">'
                 +'      <input type="checkbox" id="erro" value="'+error.id+'">'
                 +'  </td>'
-                +'  <td class="text-center">'+error.level+'</td>'
+                +'  <td class="text-center"><span class="badge badge-primary">'+error.level+'</span></td>'
                 +'  <td class="text-center">'+error.title+'<br>'+error.address+'<br>'+date+'</td>'
                 +'  <td class="text-center">'+error.events+'</td>'
-                +'  <td class="text-center"><button class="form-control btn btn-info btn-xs">Ver</button></td>'
+                +'  <td class="text-center"><a class="form-control form-control-sm btn btn-sm btn-dark" href="/detail/'+error.id+'">Ver</a></td>'
                 +'</tr>';
 
                 $('.myErrors').append(linha);
@@ -33,13 +33,6 @@ window.onload = function() {
         }
     }
     request.send()
-
-    /**
-     * Ao clicar redireciona para página de detalhes do erro.
-     */
-    // $(document).on("click", "#list-errors tbody tr", function() {
-    //     window.location = '/detail';
-    // });  
 }
 
 /**

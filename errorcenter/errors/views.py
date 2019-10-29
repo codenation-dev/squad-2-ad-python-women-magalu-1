@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import requests
 
-from .models import Error
+from .models import Error, User
 
 def user_login(request):    
     return render(request, 'errors/user_login.html')
@@ -13,11 +13,15 @@ def error_list(request):
     return render(request, 'errors/error_list.html')
 
 def error_detail(request, error_id):
+
     response = requests.get(f'http://127.0.0.1:8000/api/errors/{error_id}')
     if response.status_code >= 200 and response.status_code < 400:
+
+        error = response.json()
         context = {
-            'error': response.json()
+            'error': error
         }
+        
         return render(request, 'errors/error_detail.html', context=context)
     else:
         return render(request, 'errors/error_detail.html', context=[])
