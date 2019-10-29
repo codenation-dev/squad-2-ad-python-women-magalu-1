@@ -9,19 +9,23 @@
 
 <div class="row">
     <div class="col-md-10 offset-md-1">
-        <h1>Erro no {{ error.address }} em {{ error.created_at }}</h1>
+        <h1>Erro no {{ error.address }} em {{ date }}</h1>
+        <br><br>
     </div>
     {% if error %}
     <div class="col-md-7 offset-md-1">
         <h5><strong>Título</strong></h5>
         {{ error.title }}
+        <br><br>
         <h5><strong>Detalhes</strong></h5>
         {{ error.description }}
     </div>
     <div class="col-md-4">
         <h5><span class="badge badge-primary">{{ error.level }}</span></h5>
+        <br>
         <h5><strong>Eventos</strong></h5>
         {{ error.events }}
+        <br><br>
         <h5><strong>Coletado por</strong></h5>
         {{ error.user }}
     </div>

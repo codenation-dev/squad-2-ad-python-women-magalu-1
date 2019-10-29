@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from datetime import datetime
 import requests
 
 from .models import Error, User
@@ -18,8 +19,14 @@ def error_detail(request, error_id):
     if response.status_code >= 200 and response.status_code < 400:
 
         error = response.json()
+        print(error['created_at'])
+        myDate = datetime.strptime(error['created_at'], '%Y-%m-%dT%H:%M:%S.%f%z')
+        myDate = myDate.strftime('%d-%m-%Y')
+        # datetime.strptime(error['created_at'], '%b %d %Y %I:%M%p')
+        # myDate = ''
         context = {
-            'error': error
+            'error': error,
+            'date': myDate
         }
         
         return render(request, 'errors/error_detail.html', context=context)
