@@ -1,6 +1,9 @@
 function list()
 {
     var request = new XMLHttpRequest()
+    var filter_env = document.getElementById('filter_env').value
+    var filter_order_by = document.getElementById('order_by').value
+    var filter_seach_for = document.getElementById('search_for').value
     request.open('GET', 'http://127.0.0.1:8000/api/errors/', true)
     request.onload = function() {
         var data = JSON.parse(this.response)
