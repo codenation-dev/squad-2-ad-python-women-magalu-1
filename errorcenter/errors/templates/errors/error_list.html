@@ -1,7 +1,34 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table class="table">
+    <div class="row ml-1 mt-3 mx-0">
+        <div class="col-md-auto form-group mb-0">
+            <select class="form-control form-control-sm" onchange=""><option>Ambiente</option></select>
+        </div>
+        <div class="col-md-auto form-group mb-0">
+            <select class="form-control form-control-sm" onchange=""><option>Ordenação</option></select>
+        </div>
+        <form class="form-row" action="" method="GET">
+            <div class="col-md-auto form-group mb-0">
+                <select class="form-control form-control-sm"><option>Filtro</option></select>
+            </div>
+            <div class="col-md-auto form-group mb-0">
+                <input class="form-control form-control-sm" type="text" name="busca" placeholder="Digita a busca..."/>
+            </div>
+            <div class="col-md-auto form-group mb-0">
+                <button class="form-control form-control-sm btn btn-sm btn-secondary">Buscar</button>
+            </div>
+        </form>
+    </div>
+    <div class="row ml-1 mx-0">
+        <div class="col-md-auto form-group">
+            <button class="form-control form-control-sm btn btn-sm btn-success">Arquivar</button>
+        </div>
+        <div class="col-md-auto form-group">
+            <button class="form-control form-control-sm btn btn-sm btn-danger">Apagar</button>
+        </div>
+    </div>
+    <table class="table" id="list-errors">
         <thead class="thead-light">
             <tr>
                 <th class="text-center">
@@ -10,6 +37,7 @@
                 <th class="text-center">Level</th>
                 <th class="text-center">Log</th>
                 <th class="text-center">Eventos</th>
+                <th></th>
             </tr>
         </thead>
         <tbody class="myErrors">

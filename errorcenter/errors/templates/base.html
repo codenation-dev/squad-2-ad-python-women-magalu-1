@@ -12,33 +12,6 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand">Bem-vindo Usuário. Seu token é: AUHAUHAUHUAHUAHUA</a>
         </nav>
-        <div class="row ml-1 mt-3 mx-0">
-            <div class="col-md-auto form-group mb-0">
-                <select class="form-control form-control-sm" onchange=""><option>Ambiente</option></select>
-            </div>
-            <div class="col-md-auto form-group mb-0">
-                <select class="form-control form-control-sm" onchange=""><option>Ordenação</option></select>
-            </div>
-            <form class="form-row" action="" method="GET">
-                <div class="col-md-auto form-group mb-0">
-                    <select class="form-control form-control-sm"><option>Filtro</option></select>
-                </div>
-                <div class="col-md-auto form-group mb-0">
-                    <input class="form-control form-control-sm" type="text" name="busca" placeholder="Digita a busca..."/>
-                </div>
-                <div class="col-md-auto form-group mb-0">
-                    <button class="form-control form-control-sm btn btn-sm btn-secondary">Buscar</button>
-                </div>
-            </form>
-        </div>
-        <div class="row ml-1 mx-0">
-            <div class="col-md-auto form-group">
-                <button class="form-control form-control-sm btn btn-sm btn-success">Arquivar</button>
-            </div>
-            <div class="col-md-auto form-group">
-                <button class="form-control form-control-sm btn btn-sm btn-danger">Apagar</button>
-            </div>
-        </div>
         <div id="content">
             {% block content %}{% endblock %}
         </div>
@@ -46,5 +19,6 @@
         <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/error_list.js' %}"></script>
+        <script src="{% static 'js/error_detail.js' %}"></script>
     </body>
 </html>
