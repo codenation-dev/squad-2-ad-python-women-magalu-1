@@ -25,7 +25,6 @@ def ErrorFilter(request):
 
     return queryset
 
-
 class ErrorDetailApiView(generics.RetrieveAPIView):
     """
         Busca os dados de um erro pela 'pk'.
@@ -34,10 +33,12 @@ class ErrorDetailApiView(generics.RetrieveAPIView):
     serializer_class = ErrorSerializer
 
 
-class ErrorListApiView(generics.ListAPIView):
+class ErrorListCreateApiView(generics.ListCreateAPIView):
     """
         Busca todos os erros que não foram arquivados 
         e excluidos.
+
+        Cria um novo cadastro do erro.
     """
     serializer_class = ErrorSerializer
     def get_queryset(self):
