@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row ml-3 mt-3 mx-0">
-    <div class="col-md-auto form-group">
+<div class="row">
+    <div class="col-md-1 offset-md-1 mt-3 mb-3">
         <a href="/list" class="form-control form-control-sm btn btn-sm btn-dark">Voltar</a>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-10 offset-md-1 mb-3">
         <h1>Erro no {{ error.address }} em {{ date }}</h1>
-        <br><br>
     </div>
     {% if error %}
     <div class="col-md-7 offset-md-1">
@@ -20,14 +16,18 @@
         <h5><strong>Detalhes</strong></h5>
         {{ error.description }}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h5><span class="badge badge-primary">{{ error.level }}</span></h5>
         <br>
         <h5><strong>Eventos</strong></h5>
         {{ error.events }}
         <br><br>
         <h5><strong>Coletado por</strong></h5>
-        {{ error.user }}
+        {% if error.user.first_name %}
+        {{ error.user.first_name }} {{ error.user.last_name }}
+        {% else %}
+        {{ error.user.first_name|default_if_none:error.user.email }}
+        {% endif %}
     </div>
     {% else %}
     <h1>Nenhum resultado encontrado.</h1>
