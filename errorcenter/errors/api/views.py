@@ -3,6 +3,8 @@ from rest_framework import generics
 from ..models import Error
 from .serializers import ErrorSerializer
 
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 def is_not_null(args):
     return args != '' and args is not None
@@ -33,6 +35,8 @@ class ErrorDetailApiView(generics.RetrieveAPIView):
     """
         Busca os dados de um erro pela 'pk'.
     """
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Error.objects.all()
     serializer_class = ErrorSerializer
 
@@ -42,6 +46,8 @@ class ErrorListApiView(generics.ListAPIView):
         Busca todos os erros que não foram arquivados 
         e excluidos.
     """
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = ErrorSerializer
 
     def get_queryset(self):

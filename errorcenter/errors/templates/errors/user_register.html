@@ -1,1 +1,51 @@
-<h1>Este é um formulário de cadastro de usuários.</h1>
+{% load static %}
+{% load filtros %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Importacao dos arquivos Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_register.css' %}">
+
+    <title>Cadastro | Central de Erros</title>
+    </head>
+    <body class="text-center container">
+        <form class="form-register" method="post">
+            {% csrf_token %}
+            <h1 class="mb-3 font-weight-bold">Cadastro</h1>
+            {% for message in messages %}
+                <div class="alert alert-danger">
+                {{ message }}
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <label>Email: </label>
+                {{ form_login.username.errors }} {{ form_login.username }}
+            </div>
+            <div class="form-group">
+                <label>Senha: </label>
+                {{ form_login.password.errors }} {{ form_login.password }}
+            </div>
+            <div class="form-group">
+                <input
+                class="btn btn-lg btn-dark btn-block"
+                type="submit"
+                value="Cadastrar"
+                />
+            </div>
+            <a href="{% url 'user-login' %}">Faça login em vez disso</a>
+        </form>
+
+        <!-- Importacao dos arquivos Js -->
+        <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </body>
+</html>
