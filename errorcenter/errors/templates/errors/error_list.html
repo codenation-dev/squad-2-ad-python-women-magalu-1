@@ -1,7 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <table class="table">
+    <form class="form-row" action="." method="GET" onchange="">
+        <div class="row ml-1 mt-3 mx-0">
+            <div class="col-md-auto form-group mb-0">
+                <select class="form-control form-control-sm" onchange="filtro1" name="environment">
+                    <option value="production">Produção</option>
+                    <option value="homologation">Homologação</option>
+                    <option value="development">Dev</option></select>
+        </div>
+        <div class="col-md-auto form-group mb-0">
+            <select class="form-control form-control-sm" id="order_by" onchange="" name="order_by">
+                <option selected="" disabled="">Ordenar por</option>
+                <option value="level">Level</option>
+                <option value="-events">Frequência</option>
+            </select>
+        </div>
+        <div class="col-md-auto form-group mb-0">
+            <select class="form-control form-control-sm" name="search_for">
+                <option selected="" disabled="">Filtro</option>
+                <option value="level">Level</option>
+                <option value="description">Descrição</option>
+                <option value="address">Origem</option>
+            </select>
+        </div>
+        <div class="col-md-auto form-group mb-0">
+            <input class="form-control form-control-sm" type="text" name="search" placeholder="Digita a busca..."/>
+        </div>
+        <div class="col-md-auto form-group mb-0">
+            <button class="form-control form-control-sm btn btn-sm btn-secondary">Buscar</button>
+        </div>
+    </form>
+    </div>
+    <div class="row ml-1 mx-0">
+        <div class="col-md-auto form-group">
+            <button class="form-control form-control-sm btn btn-sm btn-success">Arquivar</button>
+        </div>
+        <div class="col-md-auto form-group">
+            <button class="form-control form-control-sm btn btn-sm btn-danger">Apagar</button>
+        </div>
+    </div>
+    <table class="table" id="list-errors">
         <thead class="thead-light">
             <tr>
                 <th class="text-center">
@@ -10,6 +49,7 @@
                 <th class="text-center">Level</th>
                 <th class="text-center">Log</th>
                 <th class="text-center">Eventos</th>
+                <th></th>
             </tr>
             {% for error in errors %}
             <tr>
@@ -19,6 +59,7 @@
                 <td class="text-center">{{error.level}}</td>
                 <td class="text-center">{{error.title}}<br>{{error.address}}<br>{{error.created_at}}</td>
                 <td class="text-center">{{error.events}}</td>
+                <td class="text-center"><a class="form-control form-control-sm btn btn-sm btn-dark" href="/detail/{{error.id}}">Ver</a>
             </tr>
             {% empty %}
             <tr>

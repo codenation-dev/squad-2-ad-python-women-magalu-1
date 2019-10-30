@@ -1,12 +1,23 @@
 .table th, .table td {
     padding: 0.4rem;
+    vertical-align: middle;
 }
 
 .table .thead-light th {
-    background-color: #f8f9fa;
+    background-color: #f2f2f2;
 }
 
 .bg-light {
-    background-color: #0086ff!important;
+    background-color: #4586ff !important;
     color: white;
+}
+
+.table tr:hover {
+    border-color: #deefff;
+    background-color: #deefff;
+}
+
+.table a {
+    width: min-content;
+    padding: 4px 15px;
 }

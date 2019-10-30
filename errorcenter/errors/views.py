@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from datetime import datetime
 import requests
 
 def checkNone(s):
@@ -28,3 +29,20 @@ def error_list(request):
         return render(request, 'errors/error_list.html', context=context)
     else:
         return render(request, 'errors/error_list.html', context={})
+
+def error_detail(request, error_id):
+
+    response = requests.get(f'http://127.0.0.1:8000/api/errors/{error_id}')
+    if response.status_code >= 200 and response.status_code < 400:
+
+        error = response.json()
+        # myDate = datetime.strptime(error['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
+        myDate = error['created_at']
+        context = {
+            'error': error,
+            'date': myDate
+        }
+        
+        return render(request, 'errors/error_detail.html', context=context)
+    else:
+        return render(request, 'errors/error_detail.html', context=[])
