@@ -40,7 +40,6 @@ class ErrorListApiView(generics.ListAPIView):
         e excluidos.
     """
     serializer_class = ErrorSerializer
-    
     def get_queryset(self):
         queryset = ErrorFilter(self.request)
         return queryset
