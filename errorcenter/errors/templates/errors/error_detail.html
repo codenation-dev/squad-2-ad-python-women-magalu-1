@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
+<div class="row mx-0">
     <div class="col-md-1 offset-md-1 mt-3 mb-3">
         <a href="/list" class="form-control form-control-sm btn btn-sm btn-dark">Voltar</a>
     </div>
@@ -16,7 +16,7 @@
         <h5><strong>Detalhes</strong></h5>
         {{ error.description }}
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <h5><span class="badge badge-primary">{{ error.level }}</span></h5>
         <br>
         <h5><strong>Eventos</strong></h5>
