@@ -1,8 +1,5 @@
 from django.shortcuts import render
-<<<<<<< HEAD
 from datetime import datetime
-=======
->>>>>>> e48334fc6f43a1c2623361ef83f40cf43c526083
 import requests
 
 from .models import Error, User
