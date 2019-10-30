@@ -17,19 +17,15 @@ def ErrorFilter(request):
     search = request.GET.get('search')
 
     if is_not_null(environment):
-        print('env')
         queryset = queryset.filter(environment=environment)
 
     if is_not_null(order_by) and order_by != 'Ordenar por':
-        print('ord')
         queryset = queryset.order_by(order_by)
 
-    if is_not_null(search_for) and is_not_null(search):
-        print('search')
-        queryset = queryset.filter(**{search_for+"__contains" : search})
+    if is_not_null(search_for) and is_not_null(search) and search_for != 'Filtro':
+        queryset = queryset.filter(**{search_for+"__contains": search})
 
     return queryset
-
 
 class ErrorDetailApiView(generics.RetrieveAPIView):
     """
@@ -41,15 +37,16 @@ class ErrorDetailApiView(generics.RetrieveAPIView):
     serializer_class = ErrorSerializer
 
 
-class ErrorListApiView(generics.ListAPIView):
+class ErrorListCreateApiView(generics.ListCreateAPIView):
     """
         Busca todos os erros que não foram arquivados 
         e excluidos.
+
+        Cria um novo cadastro do erro.
     """
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ErrorSerializer
-
     def get_queryset(self):
         queryset = ErrorFilter(self.request)
         return queryset
