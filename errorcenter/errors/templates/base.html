@@ -10,7 +10,17 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand">Bem-vindo {{ user.get_full_name }} Seu token é: HUHEUQAHEUHE</a>
+            <a class="navbar-brand">
+                <h5>
+                    Bem-vindo 
+                    {% if user.get_full_name != 'None None' %}
+                    <strong>{{ user.get_full_name }}</strong>
+                    {% else %}
+                    <strong>{{ user.email }}</strong>
+                    {% endif %} 
+                    Seu token é: <strong>5aa1ab91c2188fae06840619d38bc32284b4b6f1</strong>
+                </h5>
+            </a>
         </nav>
         <div id="content">
             {% block content %}{% endblock %}

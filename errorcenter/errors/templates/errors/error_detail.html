@@ -23,10 +23,10 @@
         {{ error.events }}
         <br><br>
         <h5><strong>Coletado por</strong></h5>
-        {% if error.user.first_name %}
-        {{ error.user.first_name }} {{ error.user.last_name }}
+        {% if error.user.get_full_name != 'None None' %}
+        {{ error.user.get_full_name }}
         {% else %}
-        {{ error.user.first_name|default_if_none:error.user.email }}
+        {{ error.user.email }}
         {% endif %}
     </div>
     {% else %}
