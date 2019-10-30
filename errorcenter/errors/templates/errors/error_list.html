@@ -5,33 +5,35 @@
         <div class="row ml-1 mt-3 mx-0">
             <div class="col-md-auto form-group mb-0">
                 <select class="form-control form-control-sm" onchange="filtro1" name="environment">
+                    <option value="">Todos os Ambientes</option>
                     <option value="production">Produção</option>
                     <option value="homologation">Homologação</option>
-                    <option value="development">Dev</option></select>
-        </div>
-        <div class="col-md-auto form-group mb-0">
-            <select class="form-control form-control-sm" id="order_by" onchange="" name="order_by">
-                <option selected="" disabled="">Ordenar por</option>
-                <option value="level">Level</option>
-                <option value="-events">Frequência</option>
-            </select>
-        </div>
-        <div class="col-md-auto form-group mb-0">
-            <select class="form-control form-control-sm" name="search_for">
-                <option selected="" disabled="">Filtro</option>
-                <option value="level">Level</option>
-                <option value="description">Descrição</option>
-                <option value="address">Origem</option>
-            </select>
-        </div>
-        <div class="col-md-auto form-group mb-0">
-            <input class="form-control form-control-sm" type="text" name="search" placeholder="Digita a busca..."/>
-        </div>
-        <div class="col-md-auto form-group mb-0">
-            <button class="form-control form-control-sm btn btn-sm btn-secondary">Buscar</button>
+                    <option value="development">Dev</option>
+                </select>
+            </div>
+            <div class="col-md-auto form-group mb-0">
+                <select class="form-control form-control-sm" id="order_by" onchange="" name="order_by">
+                    <option selected="" disabled="">Ordenar por</option>
+                    <option value="level">Level</option>
+                    <option value="-events">Frequência</option>
+                </select>
+            </div>
+            <div class="col-md-auto form-group mb-0">
+                <select class="form-control form-control-sm" name="search_for">
+                    <option selected="" disabled="">Buscar por</option>
+                    <option value="level">Level</option>
+                    <option value="description">Descrição</option>
+                    <option value="address">Origem</option>
+                </select>
+            </div>
+            <div class="col-md-auto form-group mb-0">
+                <input class="form-control form-control-sm" type="text" name="search" placeholder="Digita a busca..."/>
+            </div>
+            <div class="col-md-auto form-group mb-0">
+                <button class="form-control form-control-sm btn btn-sm btn-secondary">Buscar</button>
+            </div>
         </div>
     </form>
-    </div>
     <div class="row ml-1 mx-0">
         <div class="col-md-auto form-group">
             <button class="form-control form-control-sm btn btn-sm btn-success">Arquivar</button>
