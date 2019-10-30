@@ -1,5 +1,8 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from datetime import datetime
+=======
+>>>>>>> e48334fc6f43a1c2623361ef83f40cf43c526083
 import requests
 
 from .models import Error, User
@@ -11,7 +14,14 @@ def user_register(request):
     return render(request, 'errors/user_register.html')
 
 def error_list(request):
-    return render(request, 'errors/error_list.html')
+    response = requests.get('http://127.0.0.1:8000/api/errors')
+    if response.status_code >= 200 and response.status_code < 400:
+        context = {
+            'errors': response.json()
+        }
+        return render(request, 'errors/error_list.html', context=context)
+    else:
+        return render(request, 'errors/error_list.html', context={})
 
 def error_detail(request, error_id):
 
@@ -19,14 +29,11 @@ def error_detail(request, error_id):
     if response.status_code >= 200 and response.status_code < 400:
 
         error = response.json()
-        # print(error['created_at'])
         # myDate = datetime.strptime(error['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
-        # # myDate = myDate.strftime('%d-%m-%Y')
-        # # datetime.strptime(error['created_at'], '%b %d %Y %I:%M%p')
-        # # myDate = ''
+        myDate = error['created_at']
         context = {
             'error': error,
-            'date': error['created_at']
+            'date': myDate
         }
         
         return render(request, 'errors/error_detail.html', context=context)

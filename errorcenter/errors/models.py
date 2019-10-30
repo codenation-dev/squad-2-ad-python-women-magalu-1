@@ -14,11 +14,9 @@ from django.core.validators import validate_ipv4_address
 
 
 LEVEL_CHOICES = [
-    ('critical', 'Critical'),
     ('debug', 'Debug'),
     ('error', 'Error'),
     ('warning', 'Warning'),
-    ('information', 'Info'),
 ]
 
 

@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand">Bem-vindo Usuário. Seu token é: AUHAUHAUHUAHUAHUA</a>
+            <a class="navbar-brand">Bem-vindo {{ user.get_full_name }} Seu token é: HUHEUQAHEUHE</a>
         </nav>
         <div id="content">
             {% block content %}{% endblock %}
@@ -18,6 +18,5 @@
         <!-- Importacao dos arquivos Js -->
         <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'js/error_list.js' %}"></script>
     </body>
 </html>
