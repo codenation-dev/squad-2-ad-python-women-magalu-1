@@ -12,24 +12,22 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand">Bem-vindo {{ user.get_full_name }} Seu token é: HUHEUQAHEUHE</a>
         </nav>
-        <form class="form-row" action="." method="GET">
-        <div class="row ml-1 mt-3 mx-0">
-            <div class="col-md-auto form-group mb-0">
-                <select class="form-control form-control-sm" onchange="" name="environment" id="filtro1">
-                    <option value="production">Produção</option>
-                    <option value="homologation">Homologação</option>
-                    <option value="development">Dev</option></select>
-
+        <form class="form-row" action="." method="GET" onchange="">
+            <div class="row ml-1 mt-3 mx-0">
+                <div class="col-md-auto form-group mb-0">
+                    <select class="form-control form-control-sm" onchange="filtro1" name="environment">
+                        <option value="production">Produção</option>
+                        <option value="homologation">Homologação</option>
+                        <option value="development">Dev</option></select>
             </div>
-        </form>
-            <form class="form-row" action="." method="GET">
             <div class="col-md-auto form-group mb-0">
-                <select class="form-control form-control-sm" id="teste" onchange="" name="order_by">
+                <select class="form-control form-control-sm" id="order_by" onchange="" name="order_by">
                     <option selected="" disabled="">Ordenar por</option>
                     <option value="level">Level</option>
                     <option value="-events">Frequência</option>
                 </select>
             </div>
+
                 <div class="col-md-auto form-group mb-0">
                     <select class="form-control form-control-sm" name="search_for">
                         <option selected="" disabled="">Filtro</option>
