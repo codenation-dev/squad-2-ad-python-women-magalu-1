@@ -2,7 +2,10 @@ from django.shortcuts import render
 from datetime import datetime
 import requests
 
-from .models import Error, User
+def checkNone(s):
+    if s is None:
+        return ''
+    return s
 
 def user_login(request):    
     return render(request, 'errors/user_login.html')
@@ -11,7 +14,14 @@ def user_register(request):
     return render(request, 'errors/user_register.html')
 
 def error_list(request):
-    response = requests.get('http://127.0.0.1:8000/api/errors')
+    environment = checkNone(request.GET.get('environment'))
+    order_by = checkNone(request.GET.get('order_by'))
+    search_for = checkNone(request.GET.get('search_for'))
+    search = checkNone(request.GET.get('search'))
+    filter_params = '?environment=' + environment + '&order_by=' + order_by + '&search_for=' + search_for + '&search=' + search
+
+    response = requests.get('http://127.0.0.1:8000/api/errors' + filter_params)
+
     if response.status_code >= 200 and response.status_code < 400:
         context = {
             'errors': response.json()
