@@ -26,7 +26,7 @@ def user_login(request):
                     data=json.dumps(payload),
                     headers=headers
                 )
-            return redirect('error-list') #, {'token': token.json()['token']})
+            return redirect('home-page', token=token.json()['token'])
         else:
             messages.error(
                 request, 
@@ -40,7 +40,7 @@ def user_login(request):
 @login_required()
 def deslogar_usuario(request):
     logout(request)
-    return redirect('user_login')
+    return redirect('user-login')
 
 
 def user_register(request):  
@@ -61,11 +61,20 @@ def user_register(request):
 
 @login_required()
 def error_list(request):
-    response = requests.get('http://127.0.0.1:8000/api/errors')
-    if response.status_code >= 200 and response.status_code < 400:
-        context = {
-            'errors': response.json()
-        }
-        return render(request, 'errors/error_list.html', context=context)
-    else:
-        return render(request, 'errors/error_list.html', context={})
+    print(request.GET['token'])
+    return render(
+            request,
+            'errors/error_list.html',
+            {
+                #'token': request.GET['token'],
+                'user': request.user
+            })
+    # print(request)
+    # response = requests.get('http://127.0.0.1:8000/api/errors')
+    # if response.status_code >= 200 and response.status_code < 400:
+    #     context = {
+    #         'errors': response.json()
+    #     }
+    #     return render(request, 'errors/error_list.html', context=context)
+    # else:
+    #     return render(request, 'errors/error_list.html', context={})
