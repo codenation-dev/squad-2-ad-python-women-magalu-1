@@ -18,8 +18,9 @@
                     {% else %}
                     <strong>{{ user.email }}</strong>
                     {% endif %} 
-                    Seu token é: <strong>5aa1ab91c2188fae06840619d38bc32284b4b6f1</strong>
+                    Seu token é: <strong>{{ token }}</strong>
                 </h5>
+                <a type="button" href="{% url 'deslogar-usuario' %}">SAIR</a></p>
             </a>
         </nav>
         <div id="content">
