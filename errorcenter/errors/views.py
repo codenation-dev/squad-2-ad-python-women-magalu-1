@@ -46,7 +46,6 @@ def user_register(request):
                   'errors/user_register.html',
                   {'form_usuario': form_usuario}
                 )  
-    return render(request, 'errors/user_register.html')
 
 
 def user_login(request):
