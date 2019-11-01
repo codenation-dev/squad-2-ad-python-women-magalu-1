@@ -23,11 +23,10 @@
         {{ error.events }}
         <br><br>
         <h5><strong>Coletado por</strong></h5>
-        {% if error.user.get_full_name != 'None None' %}
-        {{ error.user.get_full_name }}
-        {% else %}
-        {{ error.user.email }}
+        {% if error.user.first_name %}
+            {{ error.user.first_name }} {{ error.user.last_name }}<br>       
         {% endif %}
+        {{ error.user.email }}
     </div>
     {% else %}
     <h1>Nenhum resultado encontrado.</h1>

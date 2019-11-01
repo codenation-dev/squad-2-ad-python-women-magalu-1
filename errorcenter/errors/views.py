@@ -12,7 +12,7 @@ import json
 from .forms import UserForm
 
 # Quantidade de itens por pagina
-ITEMS_PER_PAGE = 2
+ITEMS_PER_PAGE = 5
 
 # Token do usuário conectado ao sistema
 token = ''
