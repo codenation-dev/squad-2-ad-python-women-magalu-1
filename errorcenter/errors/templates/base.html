@@ -1,17 +1,19 @@
 {% load static %}
 <html>
     <head>
-        <title>Central de Erros - Luiza Labs (Acelera Dev Python Woman)</title>
+        <title>Central de Erros | Luiza Labs (Acelera Dev Python Woman)</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
         <!-- Importacao dos arquivos Css -->
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/cabecalho.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/error_list.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/pagination.css' %}">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand">
-                <h5>
+                <h5 class="mb-0">
                     Bem-vindo 
                     {% if user.get_full_name != 'None None' %}
                     <strong>{{ user.get_full_name }}</strong>
@@ -20,8 +22,8 @@
                     {% endif %} 
                     Seu token é: <strong>{{ token }}</strong>
                 </h5>
-                <a type="button" class="btn btn-sm btn-light" href="{% url 'deslogar-usuario' %}">Sair</a></p>
             </a>
+            <a class="btn btn-sm btn-outline-light mr-0" href="{% url 'deslogar-usuario' %}">Sair</a>
         </nav>
         <div id="content">
             {% block content %}{% endblock %}

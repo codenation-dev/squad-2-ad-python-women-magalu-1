@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form class="form-row mx-0" action="." method="GET" onchange="">
-        <div class="row ml-1 mt-3 mx-0">
-            <div class="col-md-auto form-group mb-0">
+    <div class="row ml-1 mt-3 mx-0">
+        <form class="form-row mx-0" action="." method="GET" onchange="">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <select class="form-control form-control-sm" onchange="filtro1" name="environment">
                     <option value="">Todos os Ambientes</option>
                     <option value="production">Produção</option>
@@ -11,14 +11,14 @@
                     <option value="development">Dev</option>
                 </select>
             </div>
-            <div class="col-md-auto form-group mb-0">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <select class="form-control form-control-sm" id="order_by" onchange="" name="order_by">
                     <option selected="" disabled="">Ordenar por</option>
                     <option value="level">Level</option>
                     <option value="-events">Frequência</option>
                 </select>
             </div>
-            <div class="col-md-auto form-group mb-0">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <select class="form-control form-control-sm" name="search_for">
                     <option selected="" disabled="">Buscar por</option>
                     <option value="level">Level</option>
@@ -26,21 +26,21 @@
                     <option value="address">Origem</option>
                 </select>
             </div>
-            <div class="col-md-auto form-group mb-0">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <input class="form-control form-control-sm" type="text" name="search" placeholder="Digita a busca..."/>
             </div>
-            <div class="col-md-auto form-group mb-0">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <button class="form-control form-control-sm btn btn-sm btn-secondary">Buscar</button>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
     <div class="row ml-1 mx-0">
         <form class="form-row mx-0" action="." method="POST" onchange="">
             {% csrf_token %}
-            <div class="col-md-auto form-group">
+            <div class="col-md-auto col-6 form-group">
                 <input type="submit" class="form-control form-control-sm btn btn-sm btn-success" name="button_pressed" onclick="return confirm('Você tem certeza que deseja arquivar os erros selecionados?')" value="Arquivar"/>
             </div>
-            <div class="col-md-auto form-group">
+            <div class="col-md-auto col-6 form-group">
                 <input type="submit" class="form-control form-control-sm btn btn-sm btn-danger" name="button_pressed" onclick="return confirm('Você tem certeza que quer deletar os erros selecionados?')" value="Deletar"/>
             </div>
     </div>
@@ -72,5 +72,8 @@
             </tr>
             {% endfor %}
         </form>
-    </table>
+    </table>  
+    {% with errors as paginated %}
+        {% include "pagination.html" %}
+    {% endwith %}
 {% endblock %}
