@@ -86,12 +86,12 @@ def error_list(request):
                 response = requests.patch(f'http://127.0.0.1:8000/api/errors/{error}/archive/', data={'filed': True}, headers={'Authorization': f'Token {token}'})
         elif flag == 'Deletar':
             for error in errors_checked:
-                response = requests.delete(f'http://127.0.0.1:8000/api/errors/{error}/delete/', data={'id': error}, headers={'Authorization': f'Token {token}'})
+                response = requests.patch(f'http://127.0.0.1:8000/api/errors/{error}/delete/', data={'filed': True}, headers={'Authorization': f'Token {token}'})
 
 
     if response.status_code >= 200 and response.status_code < 400:
         if request.method == 'POST':
-            return redirect('/list')
+            return redirect('/home')
 
         context = {
             'errors': response.json(),

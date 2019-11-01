@@ -65,7 +65,7 @@ class ErrorArchiveApiView(generics.UpdateAPIView):
         return self.partial_update(request, *args, **kwargs)
 
 
-class ErrorDeleteApiView(generics.DestroyAPIView):
+class ErrorDeleteApiView(generics.UpdateAPIView):
     """
         Deleta um erro pela pk
     """
