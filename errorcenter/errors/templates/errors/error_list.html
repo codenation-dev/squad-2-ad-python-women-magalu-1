@@ -49,7 +49,7 @@
         <thead class="thead-light">
             <tr>
                 <th class="text-center">
-                    <input type="checkbox" id="checkbox_all">
+                    <input type="checkbox" id="select-all" name="select-all" onclick="for(c in document.getElementsByName('checkbox')) document.getElementsByName('checkbox').item(c).checked = this.checked"">
                 </th>
                 <th class="text-center">Level</th>
                 <th class="text-center">Log</th>
