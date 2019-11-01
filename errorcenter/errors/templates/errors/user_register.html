@@ -10,7 +10,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
     <!-- Importacao dos arquivos Css -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/user_register.css' %}">
@@ -18,7 +18,7 @@
     <title>Cadastro | Central de Erros</title>
     </head>
     <body class="text-center container">
-        <form class="form-register" method="post">
+        <form class="form-register" method="POST">
             {% csrf_token %}
             <h1 class="mb-3 font-weight-bold">Cadastro</h1>
             {% for message in messages %}
@@ -26,13 +26,18 @@
                 {{ message }}
                 </div>
             {% endfor %}
+            <h4>Insira seus dados abaixo</h4>
             <div class="form-group">
-                <label>Email: </label>
-                {{ form_login.username.errors }} {{ form_login.username }}
+                {{ form_usuario.first_name.errors }} {{ form_usuario.first_name|addclass:'form-control' }}
             </div>
             <div class="form-group">
-                <label>Senha: </label>
-                {{ form_login.password.errors }} {{ form_login.password }}
+                {{ form_usuario.last_name.errors }} {{ form_usuario.last_name|addclass:'form-control' }}
+            </div>
+            <div class="form-group">
+                {{ form_usuario.email.errors }} {{ form_usuario.email|addclass:'form-control' }}
+            </div>
+            <div class="form-group">
+                {{ form_usuario.password.errors }} {{ form_usuario.password|addclass:'form-control' }}
             </div>
             <div class="form-group">
                 <input

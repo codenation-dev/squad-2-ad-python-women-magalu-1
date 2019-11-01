@@ -77,6 +77,7 @@ class UserCreateApiView(generics.CreateAPIView):
     """
         Cria um novo usuário.
     """
+    permission_classes = []
     serializer_class = UserSerializer
     def perform_create(self, serializer):
         instance = serializer.save()

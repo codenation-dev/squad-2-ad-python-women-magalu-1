@@ -6,7 +6,7 @@ from ..models import User, Error
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('get_full_name', 'email', 'password')
+        fields = ('first_name', 'last_name', 'email', 'password')
 
 class ErrorSerializer(serializers.ModelSerializer):
     user = UserSerializer()
