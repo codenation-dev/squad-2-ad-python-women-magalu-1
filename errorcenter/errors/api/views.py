@@ -6,6 +6,7 @@ from .serializers import ErrorSerializer, UserSerializer
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
+
 def is_not_null(args):
     return args != '' and args is not None
 
@@ -53,6 +54,25 @@ class ErrorListCreateApiView(generics.ListCreateAPIView):
         return queryset
 
 
+class ErrorArchiveApiView(generics.UpdateAPIView):
+    """
+        Arquiva um erro pela pk
+    """
+    queryset = Error.objects.filter(filed=False)
+    serializer_class = ErrorSerializer
+
+    def put(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+
+class ErrorDeleteApiView(generics.UpdateAPIView):
+    """
+        Deleta um erro pela pk
+    """
+    queryset = Error.objects.filter(filed=False)
+    serializer_class = ErrorSerializer
+
+
 class UserCreateApiView(generics.CreateAPIView):
     """
         Cria um novo usuário.
@@ -63,3 +83,4 @@ class UserCreateApiView(generics.CreateAPIView):
         instance = serializer.save()
         instance.set_password(instance.password)
         instance.save()
+

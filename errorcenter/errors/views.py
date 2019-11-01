@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import HttpResponseRedirect
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm
-from datetime import datetime
+
 import requests
 import json
 
@@ -86,16 +86,30 @@ def deslogar_usuario(request):
 
 @login_required()
 def error_list(request):
-    environment = checkNone(request.GET.get('environment'))
-    order_by = checkNone(request.GET.get('order_by'))
-    search_for = checkNone(request.GET.get('search_for'))
-    search = checkNone(request.GET.get('search'))
-    filter_params = '?environment=' + environment + '&order_by=' + order_by + '&search_for=' + search_for + '&search=' + search
-    response = requests.get(
-                            'http://127.0.0.1:8000/api/errors' + filter_params,
-                            headers={'Authorization': f'Token {token}'})
+    if request.method == 'GET':
+        environment = checkNone(request.GET.get('environment'))
+        order_by = checkNone(request.GET.get('order_by'))
+        search_for = checkNone(request.GET.get('search_for'))
+        search = checkNone(request.GET.get('search'))
+        filter_params = '?environment=' + environment + '&order_by=' + order_by + '&search_for=' + search_for + '&search=' + search
+        response = requests.get('http://127.0.0.1:8000/api/errors' + filter_params, headers={'Authorization': f'Token {token}'})
+
+    elif request.method == 'POST':
+        flag = request.POST.get('button_pressed')
+        errors_checked = request.POST.getlist('checkbox')
+
+        if flag == 'Arquivar':
+            for error in errors_checked:
+                response = requests.patch(f'http://127.0.0.1:8000/api/errors/{error}/archive/', data={'filed': True}, headers={'Authorization': f'Token {token}'})
+        elif flag == 'Deletar':
+            for error in errors_checked:
+                response = requests.patch(f'http://127.0.0.1:8000/api/errors/{error}/delete/', data={'filed': True}, headers={'Authorization': f'Token {token}'})
+
 
     if response.status_code >= 200 and response.status_code < 400:
+        if request.method == 'POST':
+            return redirect('/home')
+
         context = {
             'errors': response.json(),
             'token': token

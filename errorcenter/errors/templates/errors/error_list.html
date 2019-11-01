@@ -35,18 +35,21 @@
         </div>
     </form>
     <div class="row ml-1 mx-0">
-        <div class="col-md-auto form-group">
-            <button class="form-control form-control-sm btn btn-sm btn-success">Arquivar</button>
-        </div>
-        <div class="col-md-auto form-group">
-            <button class="form-control form-control-sm btn btn-sm btn-danger">Apagar</button>
-        </div>
+        <form class="form-row mx-0" action="." method="POST" onchange="">
+            {% csrf_token %}
+            <div class="col-md-auto form-group">
+                <input type="submit" class="form-control form-control-sm btn btn-sm btn-success" name="button_pressed" onclick="return confirm('Você tem certeza que deseja arquivar os erros selecionados?')" value="Arquivar"/>
+            </div>
+            <div class="col-md-auto form-group">
+                <input type="submit" class="form-control form-control-sm btn btn-sm btn-danger" name="button_pressed" onclick="return confirm('Você tem certeza que quer deletar os erros selecionados?')" value="Deletar"/>
+            </div>
     </div>
+
     <table class="table" id="list-errors">
         <thead class="thead-light">
             <tr>
                 <th class="text-center">
-                    <input type="checkbox" id="erro">
+                    <input type="checkbox" id="select-all" name="select-all" onclick="for(c in document.getElementsByName('checkbox')) document.getElementsByName('checkbox').item(c).checked = this.checked"">
                 </th>
                 <th class="text-center">Level</th>
                 <th class="text-center">Log</th>
@@ -56,7 +59,7 @@
             {% for error in errors %}
             <tr>
                 <td class="text-center">
-                    <input type="checkbox" id="erro">
+                    <input type="checkbox" name="checkbox" value={{error.id}} id="teste">
                 </td>
                 <td class="text-center"><span class="badge badge-info">{{error.level}}</span></td>
                 <td class="text-center">{{error.title}}<br>{{error.address}}<br>{{error.created_at}}</td>
@@ -68,8 +71,6 @@
                 <td colspan=4 class="text-center">Não há erros para serem listados.</td>
             </tr>
             {% endfor %}
-        </thead>
-        <tbody class="myErrors">
-        </tbody>
+        </form>
     </table>
 {% endblock %}
