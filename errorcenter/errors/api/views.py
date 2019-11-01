@@ -1,7 +1,10 @@
 from rest_framework import generics
 
-from ..models import Error
-from .serializers import ErrorSerializer
+from ..models import Error, User
+from .serializers import ErrorSerializer, UserSerializer
+
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 def is_not_null(args):
@@ -25,10 +28,13 @@ def ErrorFilter(request):
 
     return queryset
 
+
 class ErrorDetailApiView(generics.RetrieveAPIView):
     """
         Busca os dados de um erro pela 'pk'.
     """
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Error.objects.all()
     serializer_class = ErrorSerializer
 
@@ -40,6 +46,8 @@ class ErrorListCreateApiView(generics.ListCreateAPIView):
 
         Cria um novo cadastro do erro.
     """
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = ErrorSerializer
     def get_queryset(self):
         queryset = ErrorFilter(self.request)
@@ -63,3 +71,15 @@ class ErrorDeleteApiView(generics.DestroyAPIView):
     """
     queryset = Error.objects.filter(filed=False)
     serializer_class = ErrorSerializer
+
+
+class UserCreateApiView(generics.CreateAPIView):
+    """
+        Cria um novo usuário.
+    """
+    serializer_class = UserSerializer
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        instance.set_password(instance.password)
+        instance.save()
+
