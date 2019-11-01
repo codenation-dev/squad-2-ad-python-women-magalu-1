@@ -44,3 +44,22 @@ class ErrorListCreateApiView(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = ErrorFilter(self.request)
         return queryset
+
+
+class ErrorArchiveApiView(generics.UpdateAPIView):
+    """
+        Arquiva um erro pela pk
+    """
+    queryset = Error.objects.filter(filed=False)
+    serializer_class = ErrorSerializer
+
+    def put(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+
+class ErrorDeleteApiView(generics.DestroyAPIView):
+    """
+        Deleta um erro pela pk
+    """
+    queryset = Error.objects.filter(filed=False)
+    serializer_class = ErrorSerializer
