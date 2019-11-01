@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row mx-0">
     <div class="col-md-1 offset-md-1 mt-3 mb-3">
-        <a href="/home" class="form-control form-control-sm btn btn-sm btn-dark">Voltar</a>
+        <a href="{% url 'home-page' %}" class="form-control form-control-sm btn btn-sm btn-dark">Voltar</a>
     </div>
     <div class="col-md-10 offset-md-1 mb-3">
         <h1>Erro no {{ error.address }} em {{ date }}</h1>
