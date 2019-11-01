@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -20,8 +20,25 @@ def user_register(request):
     if request.method == "POST":
         form_usuario = UserForm(request.POST)
         if form_usuario.is_valid():
-            form_usuario.save()
-            return redirect('home-page')
+            username = request.POST['email']
+            password = request.POST['password']  
+
+            requests.post(
+                    'http://127.0.0.1:8000/api/users/', 
+                        data=json.dumps({
+                                        "email": username,
+                                        "password": password,
+                                        "first_name": request.POST['first_name'],
+                                        "last_name": request.POST['last_name']
+                                    }),
+                    headers={'content-type': 'application/json'}
+                )
+            messages.info(
+                request, 
+                """Cadastro realizado com sucesso! 
+                Realize agora o login com as credencias que você acabou de criar"""
+            )
+            return redirect('user-login')
     else:
         form_usuario = UserForm()
     return render(
@@ -36,9 +53,9 @@ def user_login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        usuario = authenticate(request, username=username, password=password)
-        if usuario is not None:
-            login(request, usuario)
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
             payload = {
                     'username' : username,
                     'password' : password
