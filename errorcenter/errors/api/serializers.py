@@ -11,9 +11,11 @@ class UserSerializer(serializers.ModelSerializer):
 
 class ErrorSerializer(serializers.ModelSerializer):
     user = UserSerializer()
+    created_at = serializers.DateTimeField(format="%d/%m/%Y %H:%M:%S")
     class Meta:
         model = Error
         fields = '__all__'
+
 
 class ErrorSerializerInput(serializers.ModelSerializer):
     class Meta:
