@@ -144,11 +144,8 @@ def error_detail(request, error_id):
             )
     if response.status_code >= 200 and response.status_code < 400:
         error = response.json()
-        # myDate = datetime.strptime(error['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
-        myDate = error['created_at']
         context = {
             'error': error,
-            'date': myDate,
             'token': token
         }
         return render(request, 'errors/error_detail.html', context=context)
