@@ -1,0 +1,9 @@
+.navbar-brand {
+    white-space: normal;
+}
+
+@media (max-width: 991.98px) {
+    h5 {
+        font-size: 0.9rem;
+    }
+}

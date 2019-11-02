@@ -1,3 +1,6 @@
-venv
+venv/
 *.pyc
 __pycache__
+errorcenter/db.sqlite3
+.vscode
+errorcenter/errors/migrations/0005_error_deleted.py

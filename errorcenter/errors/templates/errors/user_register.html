@@ -1,0 +1,48 @@
+{% load static %}
+{% load filtros %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Criar conta | Central de Erros | Luiza Labs (Acelera Dev Python Woman)</title>
+        <!-- Meta tags Obrigatórias -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+        <!-- Importacao dos arquivos Css -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/user_register.css' %}">
+    </head>
+    <body class="text-center container">
+        <form class="form-register" method="POST">
+            {% csrf_token %}
+            <h3 class="mb-3 font-weight-bold">Criar conta</h3>
+            {% for message in messages %}
+                <div class="alert alert-danger">
+                {{ message }}
+                </div>
+            {% endfor %}
+            <h5>Insira seus dados abaixo</h5>
+            <div class="form-group">
+                {{ form_usuario.first_name.errors }} {{ form_usuario.first_name|addclass:'form-control' }}
+            </div>
+            <div class="form-group">
+                {{ form_usuario.last_name.errors }} {{ form_usuario.last_name|addclass:'form-control' }}
+            </div>
+            <div class="form-group">
+                {{ form_usuario.email.errors }} {{ form_usuario.email|addclass:'form-control' }}
+            </div>
+            <div class="form-group">
+                {{ form_usuario.password.errors }} {{ form_usuario.password|addclass:'form-control' }}
+            </div>
+            <div class="form-group">
+                <input class="btn btn-dark btn-block" type="submit" value="Salvar">
+            </div>
+            <a href="{% url 'user-login' %}">Faça login em vez disso</a>
+        </form>
+
+        <!-- Importacao dos arquivos Js -->
+        <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </body>
+</html>

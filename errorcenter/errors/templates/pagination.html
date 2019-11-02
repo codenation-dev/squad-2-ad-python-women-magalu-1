@@ -1,0 +1,32 @@
+<div class="row mx-0">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 text-right">
+        {% if paginated.has_other_pages %}
+        <ul class="pagination justify-content-center pagination-sm">
+        {% if paginated.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="{{ filter_params }}&page={{ paginated.previous_page_number }}">&laquo;</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link">&laquo;</a></li>
+        {% endif %}
+        {% for page in paginated.paginator.page_range %}
+            {% if paginated.number == page %}
+            <li class="page-item active"><a class="page-link">{{ page }}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="{{ filter_params }}&page={{ page }}">{{ page }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if paginated.has_next %}
+            <li class="page-item"><a class="page-link" href="{{ filter_params }}&page={{ paginated.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="page-item disabled"><a class="page-link">&raquo;</a></li>
+        {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+    <div class="col-md-2">
+        <p style="font-size: 10px;" class="text-center">Total de {{ total }} erro{{ total|pluralize }} sendo exibido{{ total|pluralize }}.</p>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mx-0">
+    <div class="col-md-1 offset-md-1 mt-3 mb-3">
+        <a href="{% url 'home-page' %}" class="form-control form-control-sm btn btn-sm btn-dark">Voltar</a>
+    </div>
+    <div class="col-md-10 offset-md-1 mb-3">
+        <h1>Erro no {{ error.address }} em {{ error.created_at }}</h1>
+    </div>
+    {% if error %}
+    <div class="col-md-7 offset-md-1">
+        <div class="row">
+            <div class="col-md-12 mb-3 pd-0">
+                <h5><strong>Título</strong></h5>
+                {{ error.title }}
+            </div>
+            <div class="col-md-12 mb-3">
+                <h5><strong>Detalhes</strong></h5>
+                {{ error.description }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <h5><span class="badge badge-info">{{ error.level }}</span></h5>
+            </div>
+            <div class="col-md-12 mb-3">
+                <h5><strong>Eventos</strong></h5>
+                {{ error.events }}
+            </div>
+            <div class="col-md-12 mb-3">
+                <h5><strong>Coletado por</strong></h5>
+                {% if error.user.first_name %}
+                    {{ error.user.first_name }} {{ error.user.last_name }}<br>       
+                {% endif %}
+                {{ error.user.email }}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <h1>Nenhum resultado encontrado.</h1>
+    {% endif %}
+</div>
+{% endblock %}
