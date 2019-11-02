@@ -21,3 +21,9 @@
     width: min-content;
     padding: 4px 15px;
 }
+
+@media (max-width: 991.98px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+}

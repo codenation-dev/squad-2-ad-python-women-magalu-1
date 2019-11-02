@@ -153,5 +153,3 @@ EMAIL_USE_TLS = True
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-
-DATE_FORMAT = "Y-m-d"

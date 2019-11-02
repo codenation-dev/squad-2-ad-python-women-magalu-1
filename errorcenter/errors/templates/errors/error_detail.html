@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row mx-0">
     <div class="col-md-1 offset-md-1 mt-3 mb-3">
-        <a href="/home" class="form-control form-control-sm btn btn-sm btn-dark">Voltar</a>
+        <a href="{% url 'home-page' %}" class="form-control form-control-sm btn btn-sm btn-dark">Voltar</a>
     </div>
     <div class="col-md-10 offset-md-1 mb-3">
         <h1>Erro no {{ error.address }} em {{ date }}</h1>
@@ -23,11 +23,10 @@
         {{ error.events }}
         <br><br>
         <h5><strong>Coletado por</strong></h5>
-        {% if error.user.get_full_name != 'None None' %}
-        {{ error.user.get_full_name }}
-        {% else %}
-        {{ error.user.email }}
+        {% if error.user.first_name %}
+            {{ error.user.first_name }} {{ error.user.last_name }}<br>       
         {% endif %}
+        {{ error.user.email }}
     </div>
     {% else %}
     <h1>Nenhum resultado encontrado.</h1>

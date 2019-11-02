@@ -1,24 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form class="form-row mx-0" action="." method="GET" onchange="">
-        <div class="row ml-1 mt-3 mx-0">
-            <div class="col-md-auto form-group mb-0">
+    <div class="row ml-1 mt-3 mx-0">
+        <form class="form-row mx-0" action="." method="GET" onchange="">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <select class="form-control form-control-sm" onchange="filtro1" name="environment">
                     <option value="">Todos os Ambientes</option>
                     <option value="production">Produção</option>
                     <option value="homologation">Homologação</option>
-                    <option value="development">Dev</option>
+                    <option value="development">Desenvolvimento</option>
                 </select>
             </div>
-            <div class="col-md-auto form-group mb-0">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <select class="form-control form-control-sm" id="order_by" onchange="" name="order_by">
                     <option selected="" disabled="">Ordenar por</option>
                     <option value="level">Level</option>
                     <option value="-events">Frequência</option>
                 </select>
             </div>
-            <div class="col-md-auto form-group mb-0">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <select class="form-control form-control-sm" name="search_for">
                     <option selected="" disabled="">Buscar por</option>
                     <option value="level">Level</option>
@@ -26,27 +26,30 @@
                     <option value="address">Origem</option>
                 </select>
             </div>
-            <div class="col-md-auto form-group mb-0">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <input class="form-control form-control-sm" type="text" name="search" placeholder="Digita a busca..."/>
             </div>
-            <div class="col-md-auto form-group mb-0">
+            <div class="col-md-auto form-group mb-0 my-2">
                 <button class="form-control form-control-sm btn btn-sm btn-secondary">Buscar</button>
             </div>
-        </div>
-    </form>
-    <div class="row ml-1 mx-0">
-        <div class="col-md-auto form-group">
-            <button class="form-control form-control-sm btn btn-sm btn-success">Arquivar</button>
-        </div>
-        <div class="col-md-auto form-group">
-            <button class="form-control form-control-sm btn btn-sm btn-danger">Apagar</button>
-        </div>
+        </form>
     </div>
+    <div class="row ml-1 mx-0">
+        <form class="form-row mx-0" action="." method="POST" onchange="">
+            {% csrf_token %}
+            <div class="col-md-auto col-6 form-group">
+                <input type="submit" class="form-control form-control-sm btn btn-sm btn-success" name="button_pressed" onclick="return confirm('Você tem certeza que deseja arquivar os erros selecionados?')" value="Arquivar"/>
+            </div>
+            <div class="col-md-auto col-6 form-group">
+                <input type="submit" class="form-control form-control-sm btn btn-sm btn-danger" name="button_pressed" onclick="return confirm('Você tem certeza que quer deletar os erros selecionados?')" value="Deletar"/>
+            </div>
+    </div>
+
     <table class="table" id="list-errors">
         <thead class="thead-light">
             <tr>
                 <th class="text-center">
-                    <input type="checkbox" id="erro">
+                    <input type="checkbox" id="select-all" name="select-all" onclick="for(c in document.getElementsByName('checkbox')) document.getElementsByName('checkbox').item(c).checked = this.checked"">
                 </th>
                 <th class="text-center">Level</th>
                 <th class="text-center">Log</th>
@@ -56,7 +59,7 @@
             {% for error in errors %}
             <tr>
                 <td class="text-center">
-                    <input type="checkbox" id="erro">
+                    <input type="checkbox" name="checkbox" value={{error.id}} id="teste">
                 </td>
                 <td class="text-center"><span class="badge badge-info">{{error.level}}</span></td>
                 <td class="text-center">{{error.title}}<br>{{error.address}}<br>{{error.created_at}}</td>
@@ -68,8 +71,9 @@
                 <td colspan=4 class="text-center">Não há erros para serem listados.</td>
             </tr>
             {% endfor %}
-        </thead>
-        <tbody class="myErrors">
-        </tbody>
-    </table>
+        </form>
+    </table>  
+    {% with errors as paginated %}
+        {% include "pagination.html" %}
+    {% endwith %}
 {% endblock %}

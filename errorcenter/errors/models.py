@@ -104,6 +104,7 @@ class Error(models.Model):
     created_at = models.DateTimeField('Data de Criação', auto_now_add=True)
     events = models.IntegerField('Eventos')
     filed = models.BooleanField('Arquivado', default=False)
+    deleted = models.BooleanField('Deletado', default=False)
     user = models.ForeignKey(
         User,
         on_delete=models.deletion.DO_NOTHING,
