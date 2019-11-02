@@ -1,5 +1,5 @@
 venv
 errorcenter/db.sqlite3
 __pycache__
-.vscode
+.vscode/*
 errorcenter/errors/migrations/0005_error_deleted.py
