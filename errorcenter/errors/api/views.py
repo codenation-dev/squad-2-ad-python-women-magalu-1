@@ -1,10 +1,12 @@
 from rest_framework import generics
 
 from ..models import Error, User
-from .serializers import ErrorSerializer, UserSerializer
+from .serializers import ErrorSerializer, UserSerializer, ErrorSerializerInput
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
 
 
 def is_not_null(args):
@@ -49,9 +51,18 @@ class ErrorListCreateApiView(generics.ListCreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = ErrorSerializer
+    
     def get_queryset(self):
         queryset = ErrorFilter(self.request)
         return queryset
+
+    def post(self, request):
+        self.serializer_class = ErrorSerializerInput
+        serializer = ErrorSerializerInput(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ErrorArchiveApiView(generics.UpdateAPIView):

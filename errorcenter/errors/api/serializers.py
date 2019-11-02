@@ -14,3 +14,8 @@ class ErrorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Error
         fields = '__all__'
+
+class ErrorSerializerInput(serializers.ModelSerializer):
+    class Meta:
+        model = Error
+        fields = '__all__'
