@@ -4,11 +4,17 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm
+from django.core.paginator import Paginator, InvalidPage
 
 import requests
 import json
 
+from .forms import UserForm
+
+# Quantidade de itens por pagina
+ITEMS_PER_PAGE = 5
+
+# Token do usuário conectado ao sistema
 token = ''
 
 def checkNone(s):
@@ -105,13 +111,24 @@ def error_list(request):
             for error in errors_checked:
                 response = requests.patch(f'http://127.0.0.1:8000/api/errors/{error}/delete/', data={'filed': True}, headers={'Authorization': f'Token {token}'})
 
-
     if response.status_code >= 200 and response.status_code < 400:
         if request.method == 'POST':
             return redirect('/home')
 
+        page = request.GET.get('page')
+        errors_list = response.json()
+        paginator = Paginator(errors_list, ITEMS_PER_PAGE)
+        total = paginator.count
+        
+        try:
+            events = paginator.page(page)
+        except InvalidPage:
+            events = paginator.page(1)
+
         context = {
-            'errors': response.json(),
+            'errors': events,
+            'total': total,
+            'filter_params': filter_params,
             'token': token
         }
         return render(request, 'errors/error_list.html', context=context)

@@ -8,10 +8,9 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('first_name', 'last_name', 'email', 'password')
 
+
 class ErrorSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     class Meta:
         model = Error
         fields = '__all__'
-
-

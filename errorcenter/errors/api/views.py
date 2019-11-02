@@ -83,4 +83,3 @@ class UserCreateApiView(generics.CreateAPIView):
         instance = serializer.save()
         instance.set_password(instance.password)
         instance.save()
-
