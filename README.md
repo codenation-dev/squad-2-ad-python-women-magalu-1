@@ -42,20 +42,20 @@ $ pip3 install -r requirements.txt
 Criar as migrations
 ```bash
 cd errorcenter
-pip3 manage.py makemigrations
-pip3 manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 ```
 
 Criar super usuário
 ```bash
-pip3 manage.py createsuperuser
+python3 manage.py createsuperuser
 ```
 
 ### Tela de Login
 
 Executar o servidor
 ```bash
-pip3 manage.py runserver
+python3 manage.py runserver
 ```
 
 Acessar a url inicial:
