@@ -60,7 +60,3 @@ $ python3 manage.py runserver
 ### Abrir projeto
 
 [Central de Erros](http://127.0.0.1:8000)
-
-### Telas - Frontend
-
-### Endpoints da API - Back-end
