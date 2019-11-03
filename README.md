@@ -1,6 +1,5 @@
 # Projeto Final - Central de Erros
-# Aceleração Python Woman (Luiza Labs) 
-# Squad 2
+## Aceleração Python Woman (Luiza Labs) 
 
 Para executar o projeto:
 
