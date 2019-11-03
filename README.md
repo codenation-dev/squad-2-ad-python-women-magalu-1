@@ -49,4 +49,3 @@ Para executar o projeto:
 
 ### Endpoints da API - Back-end
 
-

@@ -110,6 +110,3 @@ class Error(models.Model):
         on_delete=models.deletion.DO_NOTHING,
         related_name='errors'
     )
-
-    def __str__(self):
-        return f'[{self.level}] {self.title}'
