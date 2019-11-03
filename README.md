@@ -41,27 +41,26 @@ $ pip3 install -r requirements.txt
 
 Criar as migrations
 ```bash
-cd errorcenter
-python3 manage.py makemigrations
-python3 manage.py migrate
+$ cd errorcenter
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate
 ```
 
 Criar super usuário
 ```bash
-python3 manage.py createsuperuser
+$ python3 manage.py createsuperuser
 ```
 
 ### Tela de Login
 
 Executar o servidor
 ```bash
-python3 manage.py runserver
+$ python3 manage.py runserver
 ```
 
-Acessar a url inicial:
-```bash
-http://127.0.0.1:8000
-```
+### Abrir projeto
+
+[Central de Erros](http://127.0.0.1:8000)
 
 ### Telas - Frontend
 
