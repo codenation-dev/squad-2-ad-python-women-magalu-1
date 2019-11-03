@@ -13,7 +13,7 @@ def is_not_null(args):
     return args != '' and args is not None
 
 def ErrorFilter(request):
-    queryset = Error.objects.filter(filed=False)
+    queryset = Error.objects.filter(filed=False, deleted=False)
     environment = request.GET.get('environment')
     order_by = request.GET.get('order_by')
     search_for = request.GET.get('search_for')
@@ -69,7 +69,7 @@ class ErrorArchiveApiView(generics.UpdateAPIView):
     """
         Arquiva um erro pela pk
     """
-    queryset = Error.objects.filter(filed=False)
+    queryset = Error.objects.filter(filed=False, deleted=False)
     serializer_class = ErrorSerializer
 
     def put(self, request, *args, **kwargs):
@@ -80,7 +80,7 @@ class ErrorDeleteApiView(generics.UpdateAPIView):
     """
         Deleta um erro pela pk
     """
-    queryset = Error.objects.filter(filed=False)
+    queryset = Error.objects.filter(filed=False, deleted=False)
     serializer_class = ErrorSerializer
 
 
