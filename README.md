@@ -6,7 +6,9 @@ Para executar o projeto:
 
 ### Clonar repositório
 
-> git clone https://github.com/codenation-dev/squad-2-ad-python-women-magalu-1.git
+Clonar o repositório no seu computador:
+    $ cd pasta-desejada
+    $ git clone https://github.com/codenation-dev/squad-2-ad-python-women-magalu-1.git
 
 ### Virtualenv
 
